@@ -8,5 +8,8 @@ module.exports = http.createServer((req, res) => {
   if (reqUrl.pathname == "/users" && req.method === "GET") {
     console.log(`Request type: ${req.method} Endpoint: ${req.url}`);
     userOps.getUsers(req, res);
+  } else if (reqUrl.pathname == "/user" && req.method === "POST") {
+    console.log(`Request type: ${req.method} Endpoint: ${req.url}`);
+    userOps.createUser(req, res);
   }
 });
