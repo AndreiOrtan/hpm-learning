@@ -1,6 +1,17 @@
 const url = require("url");
 const users = require("./mockDB");
 
+const availableEndpoints = [
+  {
+    method: "GET",
+    getUsers: "/users",
+  },
+  {
+    method: "POST",
+    createUser: "/user",
+  },
+];
+
 exports.getUsers = function (req, res) {
   const reqUrl = url.parse(req.url, true);
 
@@ -35,4 +46,17 @@ exports.createUser = function (req, res) {
     res.setHeader("Content-Type", "Application/json");
     res.end(JSON.stringify(response));
   });
+};
+
+exports.invalidUrl = function (req, res) {
+  var response = [
+    {
+      message:
+        "oops! that is a wrong endpoint, here are the available endpoints ",
+    },
+    availableEndpoints,
+  ];
+  res.statusCode = 404;
+  res.setHeader("content-Type", "Application/json");
+  res.end(JSON.stringify(response));
 };

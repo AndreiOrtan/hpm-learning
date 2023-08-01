@@ -12,4 +12,10 @@ module.exports = http.createServer((req, res) => {
     console.log(`Request type: ${req.method} Endpoint: ${req.url}`);
     userOps.createUser(req, res);
   }
+  // invalid URL
+  else {
+    console.log("Request type: " + req.method + " Endpoint: " + req.url);
+
+    userOps.invalidUrl(req, res);
+  }
 });
